@@ -1,0 +1,1107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080c09;
+    color: #eeeeee;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   ABERTURA MILITAR
+========================================= */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(54, 76, 53, 0.35),
+            rgba(3, 7, 5, 0.98) 70%
+        );
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+}
+
+#intro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+    opacity: 0.5;
+}
+
+#intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 25%,
+            rgba(0,0,0,0.8) 100%
+        );
+}
+
+.intro-content {
+    position: relative;
+    z-index: 5;
+
+    width: min(900px, 90%);
+    padding: 50px;
+
+    animation: entradaMilitar 1.4s ease;
+}
+
+.intro-content::before {
+    content: "DISCIPLINA • HONRA • DETERMINAÇÃO";
+
+    display: block;
+    margin-bottom: 25px;
+
+    color: #a8a36a;
+
+    font-size: 0.85rem;
+    font-weight: bold;
+
+    letter-spacing: 6px;
+
+    opacity: 0;
+
+    animation:
+        aparecerTexto 1s ease 0.4s forwards;
+}
+
+.intro-content::after {
+    content: "";
+
+    display: block;
+
+    width: 120px;
+    height: 3px;
+
+    margin: 25px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #c9ad57,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px rgba(201,173,87,0.5);
+}
+
+.intro-content h1 {
+    color: #d4bd68;
+
+    font-size: clamp(4rem, 10vw, 8rem);
+
+    font-weight: 900;
+
+    letter-spacing: 12px;
+
+    text-transform: uppercase;
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 10px rgba(212,189,104,0.25),
+        0 0 35px rgba(212,189,104,0.15);
+
+    animation: aparecerNome 1.5s ease;
+}
+
+.intro-content p {
+    margin-top: 25px;
+
+    color: #c8c8c8;
+
+    font-size: 1.15rem;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    animation:
+        aparecerTexto 1s ease 0.8s forwards;
+}
+
+#entrar {
+    position: relative;
+
+    margin-top: 30px;
+
+    padding: 16px 55px;
+
+    border: 1px solid #c9ad57;
+
+    background:
+        rgba(35, 48, 36, 0.6);
+
+    color: #d8c477;
+
+    font-size: 0.95rem;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition: 0.3s ease;
+
+    opacity: 0;
+
+    animation:
+        aparecerTexto 1s ease 1.1s forwards;
+}
+
+#entrar::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(212,189,104,0.2),
+            transparent
+        );
+
+    transition: 0.6s;
+}
+
+#entrar:hover::before {
+    left: 100%;
+}
+
+#entrar:hover {
+    color: #111;
+
+    background: #c9ad57;
+
+    box-shadow:
+        0 0 20px rgba(201,173,87,0.4),
+        0 0 50px rgba(201,173,87,0.15);
+
+    transform: scale(1.05);
+}
+
+#intro.fade {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+/* =========================================
+   FOTO DE PERFIL — FELLIPE
+========================================= */
+
+.foto-perfil-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.foto-perfil {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 4px solid #c9ad57;
+
+    box-shadow:
+        0 0 15px rgba(201,173,87,0.35),
+        0 0 35px rgba(201,173,87,0.15);
+
+    transition: transform 0.4s ease,
+                box-shadow 0.4s ease;
+
+    animation: fotoEntrada 1.2s ease;
+}
+
+.foto-perfil:hover {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 0 25px rgba(201,173,87,0.6),
+        0 0 50px rgba(201,173,87,0.25);
+}
+
+@keyframes fotoEntrada {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 500px) {
+    .foto-perfil {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+
+header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+
+    background:
+        rgba(8, 12, 9, 0.96);
+
+    border-bottom:
+        1px solid rgba(201,173,87,0.2);
+
+    backdrop-filter: blur(10px);
+}
+
+header nav {
+    max-width: 1200px;
+    margin: auto;
+}
+
+header ul {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    list-style: none;
+
+    gap: 10px;
+
+    padding: 15px 20px;
+}
+
+header a {
+    display: block;
+
+    padding: 10px 16px;
+
+    color: #d5d5d5;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s ease;
+}
+
+header a:hover {
+    color: #d4bd68;
+
+    background:
+        rgba(201,173,87,0.08);
+
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   FUNDO
+========================================= */
+
+.musical-background {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: -1;
+}
+
+.militar,
+.estudo,
+.direito,
+.engenharia,
+.luta {
+    position: absolute;
+
+    font-size: 3rem;
+
+    opacity: 0.07;
+
+    transition:
+        transform 0.3s ease;
+}
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+main {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 50px 25px;
+}
+
+main section {
+    margin-bottom: 80px;
+
+    padding: 45px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,42,34,0.82),
+            rgba(10,15,12,0.92)
+        );
+
+    border:
+        1px solid rgba(201,173,87,0.12);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.3);
+
+    transition: 0.4s ease;
+}
+
+main section:hover {
+    border-color:
+        rgba(201,173,87,0.3);
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,0.4);
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+#hero {
+    min-height: 500px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+#hero h1 {
+    color: #d4bd68;
+
+    font-size: 3rem;
+
+    line-height: 1.2;
+
+    margin-bottom: 35px;
+
+    text-align: center;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    min-height: 60px;
+}
+
+#hero p {
+    color: #d5d5d5;
+
+    font-size: 1.08rem;
+
+    text-align: justify;
+
+    margin-bottom: 28px;
+}
+
+/* =========================================
+   TÍTULOS
+========================================= */
+
+h2 {
+    color: #d4bd68;
+
+    font-size: 2.2rem;
+
+    margin-bottom: 30px;
+
+    border-left:
+        4px solid #c9ad57;
+
+    padding-left: 15px;
+}
+
+h3 {
+    color: #d4bd68;
+
+    font-size: 1.5rem;
+
+    margin-top: 30px;
+
+    margin-bottom: 15px;
+}
+
+/* =========================================
+   HABILIDADES CLICÁVEIS
+========================================= */
+
+.habilidades-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+.habilidade-card {
+    position: relative;
+
+    padding: 30px 20px;
+
+    min-height: 190px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35, 50, 39, 0.9),
+            rgba(12, 18, 14, 0.95)
+        );
+
+    border:
+        1px solid rgba(201,173,87,0.18);
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.habilidade-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #c9ad57;
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: 0.3s ease;
+}
+
+.habilidade-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #c9ad57;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.35),
+        0 0 20px rgba(201,173,87,0.08);
+}
+
+.habilidade-card:hover::before {
+    transform: scaleX(1);
+}
+
+.icone-habilidade {
+    font-size: 2.5rem;
+
+    margin-bottom: 12px;
+
+    transition: transform 0.3s ease;
+}
+
+.habilidade-card:hover .icone-habilidade {
+    transform: scale(1.15);
+}
+
+.habilidade-card h3 {
+    margin: 5px 0 8px;
+
+    color: #d4bd68;
+
+    font-size: 1.2rem;
+}
+
+.habilidade-card p {
+    color: #aaa;
+
+    font-size: 0.9rem;
+
+    margin: 0;
+}
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-habilidade {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9998;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,0.82);
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.modal-habilidade.ativo {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.conteudo-modal {
+    position: relative;
+
+    width: min(700px, 95%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 50px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d2a20,
+            #0b100d
+        );
+
+    border:
+        1px solid rgba(201,173,87,0.5);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.7),
+        0 0 30px rgba(201,173,87,0.08);
+
+    transform:
+        scale(0.8)
+        translateY(30px);
+
+    transition:
+        transform 0.4s ease;
+}
+
+.modal-habilidade.ativo .conteudo-modal {
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+#fechar-modal {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #aaa;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#fechar-modal:hover {
+    color: #d4bd68;
+
+    transform: rotate(90deg);
+}
+
+#modal-icone {
+    display: block;
+
+    text-align: center;
+
+    font-size: 4rem;
+
+    margin-bottom: 10px;
+}
+
+#modal-titulo {
+    text-align: center;
+
+    color: #d4bd68;
+
+    border: none;
+
+    padding: 0;
+
+    margin-bottom: 30px;
+}
+
+#modal-texto {
+    color: #d0d0d0;
+
+    font-size: 1.05rem;
+
+    line-height: 2;
+
+    text-align: justify;
+}
+
+#modal-texto p {
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   PROJETOS
+========================================= */
+
+#Projetos p {
+    text-align: justify;
+
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   CURRÍCULO
+========================================= */
+
+#Curriculo {
+    text-align: center;
+}
+
+#Curriculo a {
+    display: inline-block;
+
+    padding: 12px 30px;
+
+    color: #111;
+
+    background: #c9ad57;
+
+    text-decoration: none;
+
+    border-radius: 4px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+#Curriculo a::after {
+    content: "Baixar currículo";
+}
+
+#Curriculo a:hover {
+    background: #e2ce79;
+
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   CONTATO
+========================================= */
+
+#Contato {
+    max-width: 800px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Contato form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+#Contato label {
+    color: #d4bd68;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+}
+
+#Contato input,
+#Contato textarea {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #101511;
+
+    color: white;
+
+    border:
+        1px solid rgba(201,173,87,0.2);
+
+    border-radius: 4px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 1rem;
+
+    transition: 0.3s;
+}
+
+#Contato input:focus,
+#Contato textarea:focus {
+    border-color: #c9ad57;
+
+    box-shadow:
+        0 0 12px rgba(201,173,87,0.12);
+}
+
+#Contato textarea {
+    min-height: 160px;
+
+    resize: vertical;
+}
+
+#Contato button {
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #c9ad57;
+
+    color: #111;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#Contato button:hover {
+    background: #e2ce79;
+
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   ANIMAÇÃO
+========================================= */
+
+main section.animar {
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+main section.animar.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background: #050705;
+
+    border-top:
+        1px solid rgba(201,173,87,0.15);
+}
+
+footer p {
+    color: #777;
+
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   ANIMAÇÕES
+========================================= */
+
+@keyframes entradaMilitar {
+    0% {
+        opacity: 0;
+        transform: scale(1.08) translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes aparecerNome {
+    0% {
+        opacity: 0;
+        letter-spacing: 30px;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        letter-spacing: 12px;
+        transform: scale(1);
+    }
+}
+
+@keyframes aparecerTexto {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .habilidades-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .intro-content {
+        padding: 30px;
+    }
+
+    .intro-content h1 {
+        font-size: 4rem;
+        letter-spacing: 6px;
+    }
+
+    .intro-content p {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+
+    header ul {
+        gap: 3px;
+    }
+
+    header a {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    main {
+        padding: 30px 15px;
+    }
+
+    main section {
+        padding: 30px 20px;
+    }
+
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+
+    #hero p {
+        text-align: left;
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .habilidades-container {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-content {
+        padding: 20px;
+    }
+
+    .intro-content h1 {
+        font-size: 2.7rem;
+        letter-spacing: 3px;
+    }
+
+    .intro-content p {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .intro-content::before {
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+    }
+
+    #entrar {
+        padding: 13px 35px;
+        font-size: 0.8rem;
+    }
+
+    header ul {
+        flex-direction: column;
+    }
+
+    header a {
+        width: 100%;
+        text-align: center;
+    }
+
+    main section {
+        padding: 25px 18px;
+    }
+
+    #hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .conteudo-modal {
+        padding: 35px 25px;
+    }
+
+    #modal-texto {
+        font-size: 0.95rem;
+        text-align: left;
+    }
+}
